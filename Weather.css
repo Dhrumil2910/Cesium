@@ -1,0 +1,57 @@
+.styled-button-5 {
+     background-color:#ed8223;
+     color:#fff;
+     font-family:'Helvetica Neue',sans-serif;
+     font-size:18px;
+     line-height:30px;
+     border-radius:20px;
+     -webkit-border-radius:5px;
+     -moz-border-radius:5px;
+     border:0;
+     text-shadow:#C17C3A 0 -1px 0;
+     width:120px;
+     height:28px;
+     margin-top : 0.7em;
+}
+#my-address {
+     margin-top : 0.5em;
+}
+
+#bargraph {
+    margin: -600px 0 0 0;
+    display: none;
+    background-color: black;
+    opacity: 0.95;
+    /*box-shadow: 2px 2px grey;*/
+}
+
+.chart {
+     background: #b0e0f8;
+     margin: 5px;
+     float : left;
+}
+.chart rect {
+  stroke: white;
+  fill: steelblue;
+}
+.chart text.score {
+  fill: white;
+}
+.chart text.name {
+  fill: #000;
+}    
+
+.chart line {
+  stroke: #c1c1c1;
+}
+.chart .rule {
+  fill: #000;
+}
+/* removed the while stroke as we don't need it anymore */
+.chart rect {
+  stroke: none;
+}
+/* a bit of hovering effect for each bar */
+.chart rect:hover {
+  fill: #64707D;
+}
