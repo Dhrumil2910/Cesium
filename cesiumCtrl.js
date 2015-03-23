@@ -121,8 +121,6 @@ function forSearchedCity(latitude,longitude){
 	xmlhttp.onreadystatechange=function(){
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{	
-        
-
     		var city = [];
     		var cityDataJSON = JSON.parse(xmlhttp.responseText).query;
     		var temperature = [cityDataJSON.results.channel.item.forecast[0].high, cityDataJSON.results.channel.item.forecast[1].high, cityDataJSON.results.channel.item.forecast[2].high,cityDataJSON.results.channel.item.forecast[3].high, cityDataJSON.results.channel.item.forecast[4].high],
@@ -200,12 +198,12 @@ function forSearchedCity(latitude,longitude){
                   .text(String);
 
       document.getElementById("bargraph").style.display = "initial";
-
-    	var desc='<h2>City :'+cityDataJSON.results.channel.title+'</h2><h4>Coord : lon -'+longitude+', lat -'+latitude+ '</h4><h4>Sunrise :'+cityDataJSON.results.channel.astronomy.sunrise+'</h4><h4>Sunset :'+cityDataJSON.results.channel.astronomy.sunset+'</h4><h4>Weather :'+cityDataJSON.results.channel.item.forecast[0].text+'</h4><h4>Temp :'+cityDataJSON.results.channel.item.condition.temp+'</h4><h4>Pressure :'+cityDataJSON.results.channel.atmosphere.pressure+'</h4>\
+      //console.log(cityDataJSON.results.channel.title.split('-')[1]);
+    	var desc='<h2>City : '+cityDataJSON.results.channel.title.split('-')[1] +'</h2><h4>Coord : lon - '+longitude+', lat -'+latitude+ '</h4><h4>Sunrise :'+cityDataJSON.results.channel.astronomy.sunrise+'</h4><h4>Sunset :'+cityDataJSON.results.channel.astronomy.sunset+'</h4><h4>Weather :'+cityDataJSON.results.channel.item.forecast[0].text+'</h4><h4>Temp :'+cityDataJSON.results.channel.item.condition.temp+'</h4><h4>Pressure :'+cityDataJSON.results.channel.atmosphere.pressure+'</h4>\
 			             <h4>Humidity :'+cityDataJSON.results.channel.atmosphere.humidity+'</h4>';
 			var imageIcon = "./icons/"+cityDataJSON.results.channel.item.condition.code+".gif";
 			city[0] = window.viewer.entities.add({
-			         name : cityDataJSON.results.channel.title,
+			         name : cityDataJSON.results.channel.title.split('-')[1],
 			         description : desc,
               position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
                 point : {
@@ -220,7 +218,7 @@ function forSearchedCity(latitude,longitude){
                 height : 30
                 },
                 label : {
-                text : cityDataJSON.results.channel.title,
+                text : cityDataJSON.results.channel.title.split('-')[1],
                 font : '12pt monospace',
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 outlineWidth : 2,
