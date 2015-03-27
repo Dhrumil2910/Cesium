@@ -18,13 +18,38 @@
 }
 
 #bargraph {
-    margin: -600px 0 0 0;
+    margin: -620px 0 0 0;
     display: none;
     background-color: black;
     opacity: 0.95;
     /*box-shadow: 2px 2px grey;*/
 }
 
+#SelectTool{
+    margin: -420px 0 0 0;
+    background-color: black;
+    opacity: 0.95;
+    width: 25em;
+    height: 21em;
+    margin-left: 0em;
+}
+#SelectTool1{
+    margin: -460px 0 0 0;
+    background-color: black;
+    opacity: 0.95;
+    width: 25em;
+    height: 21em;
+    margin-left: 0em;
+}
+#SelectTool2{
+    margin: -460px 0 0 0;
+    background-color: black;
+    opacity: 0.95;
+    width: 19em;
+    height: 15em;
+    margin-left: 26em;
+    display: none;
+}
 .chart {
      background: #b0e0f8;
      margin: 5px;

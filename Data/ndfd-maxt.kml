@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<GroundOverlay>
+   <name>nowCOAST - NDFD Max Temp - +0 Day</name>
+   <color>7fffffff</color>
+   <drawOrder>1</drawOrder>
+   <Icon>
+      <href>http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/forecasts?SERVICE=WMS&amp;REQUEST=GetMap&amp;FORMAT=image%2Fgif&amp;TRANSPARENT=TRUE&amp;STYLES=&amp;VERSION=1.1.1&amp;LAYERS=NDFD_RAS_MAXT_0_00&amp;WIDTH=1500&amp;HEIGHT=637&amp;SRS=EPSG:4326&amp;BBOX=-126,24,-66,49.5</href>
+      <refreshMode>onInterval</refreshMode>
+      <refreshInterval>3600</refreshInterval>
+      <viewBoundScale>1</viewBoundScale>
+   </Icon>
+   <LatLonBox>-126,24,-66,49.5
+      <north>49.5</north>
+      <south>24</south>
+      <east>-66</east>
+      <west>-126</west>
+      <rotation>0</rotation>
+   </LatLonBox>
+</GroundOverlay>
+</kml>
