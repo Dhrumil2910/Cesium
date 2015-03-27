@@ -5,8 +5,10 @@ var longg;
 
 app.controller("cesiumCtrl", function($scope,$http) {
     window.viewer = new Cesium.Viewer('cesiumContainer', {
-        sceneMode: Cesium.SceneMode.COLUMBUS_VIEW
+        sceneMode: Cesium.SceneMode.COLUMBUS_VIEW,
+        timeline: false
     });
+
 	initialize();
 });
 
@@ -47,7 +49,127 @@ function codeAddress() {
     
   }
 
+function GeneratePopulationData(){
+  try{
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/ne_10m_us_states.topojson'));
+    viewer.camera.lookAt(Cesium.Cartesian3.fromDegrees(-98.0, 40.0), new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0));
+    viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+  }
+  catch(err){
+    alert(err);
+  }
+
+}
  
+function GenerateTemperatureData(){
+  try{
+    window.viewer.dataSources.add(Cesium.KmlDataSource.load('../SampleData/kml/ndfd-maxt.kml'));
+    viewer.camera.lookAt(Cesium.Cartesian3.fromDegrees(-98.0, 40.0), new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0));
+    viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+  }
+  catch(err){
+    alert(err);
+  }
+}
+
+function GenerateLatestDetails(){
+  try{
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/LatestEarthQuakes.topojson'));
+  }
+  catch(err){
+    alert(err);
+  }
+}
+
+function GenerateTotalDetails(){
+  try{
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/EarthQuake.topojson'));
+  }
+  catch(err){
+    alert(err);
+  }
+}
+function GenerateWorldBoundaries(){
+  try{
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/WorldBoundaries.topojson'));
+  }
+  catch(err){
+    alert(err);
+  }
+}
+
+function GenerateRacingTrack(){
+  try{
+      window.viewer.dataSources.add(Cesium.KmlDataSource.load('../SampleData/kml/c6002014.kml'));
+      window.viewer.camera.lookAt(Cesium.Cartesian3.fromDegrees(-71.0, 18.0), new Cesium.Cartesian3(0.0, -479000.0, 3930000.0));
+      window.viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+  }
+  catch(err){
+    alert(err);
+  }
+}
+function getOptions(){
+  var stringOfLayers = "";
+  if(document.getElementById("RAIL").checked){
+    if(stringOfLayers == ""){
+      stringOfLayers += document.getElementById("RAIL").value; 
+    }
+    else{
+      stringOfLayers = stringOfLayers + ","+ document.getElementById("RAIL").value;    
+    }
+    
+  }
+  if(document.getElementById("ROADS").checked){
+    if(stringOfLayers == ""){
+      stringOfLayers += document.getElementById("ROADS").value; 
+    }
+    else{
+      stringOfLayers = stringOfLayers + ","+ document.getElementById("ROADS").value;    
+    }
+     
+  }
+  if(document.getElementById("AIR").checked){
+    if(stringOfLayers == ""){
+      stringOfLayers += document.getElementById("AIR").value; 
+    }
+    else{
+      stringOfLayers= stringOfLayers + ","+ document.getElementById("AIR").value;      
+    }
+    
+  }
+  if(document.getElementById("CANAL").checked){
+    if(stringOfLayers == ""){
+      stringOfLayers += document.getElementById("CANAL").value; 
+    }
+    else{
+      stringOfLayers = stringOfLayers + ","+ document.getElementById("CANAL").value;    
+    }
+     
+  }
+  if(document.getElementById("RESERVE").checked){
+    if(stringOfLayers == ""){
+      stringOfLayers += document.getElementById("RESERVE").value; 
+    }
+    else{
+     stringOfLayers = stringOfLayers + ","+ document.getElementById("RESERVE").value;    
+    }
+      
+  }
+  alert(stringOfLayers);
+  var imageryLayers = window.viewer.imageryLayers;
+  imageryLayers.addImageryProvider(new Cesium.WebMapServiceImageryProvider({
+    url : 'http://nationalmap.nicta.com.au/proxy/http://geoserver-nm.nicta.com.au/geotopo_250k/ows',
+    layers : stringOfLayers,
+    parameters : {
+        transparent : true,
+        format : 'image/png'
+    }
+}));
+// Start off looking at Australia.
+viewer.camera.viewRectangle(Cesium.Rectangle.fromDegrees(114.591, -45.837, 148.970, -5.730));
+
+}
+
 function forCurrentCity(){
 	var xmlhttp = new XMLHttpRequest();
 	var currentLocationURL="http://openweathermap.org/help/city_list.txt";

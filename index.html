@@ -32,7 +32,14 @@ $(document).ready(function(){
     $("#show").click(function(){
         $("#bargraph").show(1000);
     });
+    $("#DATA").click(function(){
+        $("#SelectTool2").toggle(1000);
+    });
+    $("#hide1").click(function(){
+        $("#SelectTool2").hide(1000);
+    });
 });
+
 </script>
 
 </head>
@@ -41,16 +48,86 @@ $(document).ready(function(){
 <input type="text" id="my-address">
 <button id="getCords" class="btn btn-info" onClick="codeAddress();">Get Weather</button>
 <button id="show" class="btn btn-info" >Show ForeCast</button>
+
 <div id="cesiumContainer" ng-app="cesiumApp" ng-controller="cesiumCtrl"></div>
 
 <div id="bargraph" style="position:absolute;">
   <h4 style="color:white;text-align:center"><b>ForeCast For Upcomming Five Days(Temp(F))</b></h4>
-<button type="button" class="btn btn-default" aria-label="Left Align" style="float:right;margin-top:-2.5em; background-color:black; border: 0px" id="hide">
+  <button type="button" class="btn btn-default" aria-label="Left Align" style="float:right;margin-top:-2.5em; background-color:black; border: 0px" id="hide">
   <span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:white"></span>
-</button>
+  </button>
 </div>
 <br>
 <br>
+  <div id="SelectTool1" class="table-responsive" style="position:absolute">
+  <h4 style="color:white;text-align:center"><b> Select Tool For Displaying Results</b> </h4>
+  </div>
+  <div id="SelectTool" class="table-responsive" style="position:absolute">
+  <table  class="table table-hover" >
+  <tr><td><h5 style="color:white;"> Population Data of the USA</h5></td>
+  <td><button type="button" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="POPULA" onclick="GeneratePopulationData()">
+  <span class="glyphicon glyphicon-play" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+  <tr><td><h5 style="color:white;"> Surface Temperature Variation of the USA</h5></td>
+  <td><button type="button" onclick="GenerateTemperatureData()" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="SURFACE"  >
+  <span class="glyphicon glyphicon-play" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+  <tr><td><h5 style="color:white;"> Latest EarthQuake Details</h5></td>
+  <td><button type="button" onclick="GenerateLatestDetails()" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="LATEST">
+  <span class="glyphicon glyphicon-play" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+  <tr><td><h5 style="color:white;"> Total EarthQuake Details</h5></td>
+  <td><button type="button" onclick="GenerateTotalDetails()" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="TOTAL">
+  <span class="glyphicon glyphicon-play" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+<tr><td><h5 style="color:white;">World Boundaries</h5></td>
+  <td><button type="button" onclick="GenerateWorldBoundaries()" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="BOUND">
+  <span class="glyphicon glyphicon-play" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+
+  <tr><td><h5 style="color:white;">Ocean Skippers Racing Track</h5></td>
+  <td><button type="button" onclick="GenerateRacingTrack()" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="RACE">
+  <span class="glyphicon glyphicon-play" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+
+  <tr><td><h5 style="color:white;">Australian Data Set</h5></td>
+  <td><button type="button" class="btn btn-default" aria-label="Left Align" style="background-color:black; border: 0px;align:center;" id="DATA">
+  <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color:white"></span>
+  </button></td>
+  </tr>
+  
+  </table>
+</div>
+<div id="SelectTool2" class="table-responsive" style="position:absolute;align:center">
+<h4 style="color:white;text-align:center"> Select any one of them</h4>
+<button type="button" class="btn btn-default" aria-label="Left Align" style="float:right;margin-top:-2.5em; background-color:black; border: 0px" id="hide1">
+  <span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:white"></span>
+  </button>
+ <div class="checkbox" style="color:white;margin-left:2em">
+      <label><input type="checkbox" value="Transport:roads" id="ROADS" checked>Roads</label>
+    </div>
+ <div class="checkbox" style="color:white;margin-left:2em">
+      <label><input type="checkbox" value="Transport:railways" id="RAIL">Railways</label>
+    </div>
+    <div class="checkbox" style="color:white;margin-left:2em">
+      <label><input type="checkbox" value=" Transport:aircraftfacilitypoints" id="AIR">Aircraft Facility Points</label>
+    </div>
+    <div class="checkbox" style="color:white;margin-left:2em">
+      <label><input type="checkbox" value="Hydrography:canallines" id="CANAL">Canal Lines</label>
+    </div>
+    <div class="checkbox" style="color:white;margin-left:2em">
+      <label><input type="checkbox" value="Hydrography:reservoirs" id="RESERVE">Reservoirs</label>
+    </div>
+    <button id="getCords" class="btn btn-info" style="color:white;margin-left:2em" onClick="getOptions()">On Map Analysis</button>
+
+</div>
+
 <script src="cesiumApp.js"></script>
 <script src="cesiumCtrl.js"></script>
 </body>
