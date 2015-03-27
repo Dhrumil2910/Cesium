@@ -51,7 +51,7 @@ function codeAddress() {
 
 function GeneratePopulationData(){
   try{
-    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/ne_10m_us_states.topojson'));
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('Data/ne_10m_us_states.topojson'));
     viewer.camera.lookAt(Cesium.Cartesian3.fromDegrees(-98.0, 40.0), new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0));
     viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
   }
@@ -63,7 +63,7 @@ function GeneratePopulationData(){
  
 function GenerateTemperatureData(){
   try{
-    window.viewer.dataSources.add(Cesium.KmlDataSource.load('../SampleData/kml/ndfd-maxt.kml'));
+    window.viewer.dataSources.add(Cesium.KmlDataSource.load('Data/ndfd-maxt.kml'));
     viewer.camera.lookAt(Cesium.Cartesian3.fromDegrees(-98.0, 40.0), new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0));
     viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
   }
@@ -74,7 +74,7 @@ function GenerateTemperatureData(){
 
 function GenerateLatestDetails(){
   try{
-    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/LatestEarthQuakes.topojson'));
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('Data/LatestEarthQuakes.topojson'));
   }
   catch(err){
     alert(err);
@@ -83,7 +83,7 @@ function GenerateLatestDetails(){
 
 function GenerateTotalDetails(){
   try{
-    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/EarthQuake.topojson'));
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('Data/EarthQuake.topojson'));
   }
   catch(err){
     alert(err);
@@ -91,7 +91,7 @@ function GenerateTotalDetails(){
 }
 function GenerateWorldBoundaries(){
   try{
-    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('../SampleData/WorldBoundaries.topojson'));
+    window.viewer.dataSources.add(Cesium.GeoJsonDataSource.load('Data/WorldBoundaries.topojson'));
   }
   catch(err){
     alert(err);
@@ -100,7 +100,7 @@ function GenerateWorldBoundaries(){
 
 function GenerateRacingTrack(){
   try{
-      window.viewer.dataSources.add(Cesium.KmlDataSource.load('../SampleData/kml/c6002014.kml'));
+      window.viewer.dataSources.add(Cesium.KmlDataSource.load('Data/c6002014.kml'));
       window.viewer.camera.lookAt(Cesium.Cartesian3.fromDegrees(-71.0, 18.0), new Cesium.Cartesian3(0.0, -479000.0, 3930000.0));
       window.viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
   }
@@ -155,7 +155,6 @@ function getOptions(){
     }
       
   }
-  alert(stringOfLayers);
   var imageryLayers = window.viewer.imageryLayers;
   imageryLayers.addImageryProvider(new Cesium.WebMapServiceImageryProvider({
     url : 'http://nationalmap.nicta.com.au/proxy/http://geoserver-nm.nicta.com.au/geotopo_250k/ows',
@@ -168,57 +167,6 @@ function getOptions(){
 // Start off looking at Australia.
 viewer.camera.viewRectangle(Cesium.Rectangle.fromDegrees(114.591, -45.837, 148.970, -5.730));
 
-}
-
-function forCurrentCity(){
-	var xmlhttp = new XMLHttpRequest();
-	var currentLocationURL="http://openweathermap.org/help/city_list.txt";
-	console.log("Hy");
-	xmlhttp.onreadystatechange = function() {
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				
-			var CityId = xmlhttp.responseText;
-
-			console.log(CityId);
-			
-	}
-	console.log("I am here ");
-	xmlhttp.open("GET", currentLocationURL, true);
-	xmlhttp.send();
-}
-}
-
-function readFileAndMakeList(file){
-	var xmlhttp;
-	if (window.XMLHttpRequest)
-  	{
-   		xmlhttp=new XMLHttpRequest();
-  	}
-	else
-  	{
-  		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  	}
-	xmlhttp.onreadystatechange=function()
-  	{
-  		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    	{
-      		var text = xmlhttp.responseText;
-      		var format = text.split('\n');
-      		var i;
-      		var cityID;
-      		
-      		for(i=1; i<10;i++){
-        		cityID = format[i].match(/[0-9]{4,7}/i);
-        		if(stringOfCityIDs == "")
-          			stringOfCityIDs = stringOfCityIDs + cityID;
-        		else
-          			stringOfCityIDs = stringOfCityIDs + "," + cityID;
-        	}
-        	 alert("Hi");
-    	}
-  	}
-	xmlhttp.open("GET",file,false);
-	xmlhttp.send();
 }
 
 
@@ -355,5 +303,3 @@ function forSearchedCity(latitude,longitude){
 
 }
 
-/*google.maps.event.addDomListener(window, 'load', initialize);
-*/
